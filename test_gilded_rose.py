@@ -38,7 +38,7 @@ class GildedRose_BrieTest(unittest.TestCase):
         self.assertEquals(-1, self.items[1].sell_in)
         self.assertEquals(12, self.items[1].quality)
 
-    def test_normal_with_zero_quality(self):
+    def test_brie_with_max_quality(self):
         self.assertEquals(-1, self.items[2].sell_in)
         self.assertEquals(50, self.items[2].quality)
 
