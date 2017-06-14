@@ -5,6 +5,13 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
+        #     if item.name == "Aged Brie":
+        #         self.brie_update_quality(item)
+        #     if item.name == "Sulfuras, Hand of Ragnaros":
+        #         self.sulfuras_update_quality(item)
+        #     else:
+        #         self.normal_update_quality(item)
+
             if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
                 if item.quality > 0:
                     if item.name != "Sulfuras, Hand of Ragnaros":
@@ -33,15 +40,25 @@ class GildedRose(object):
                     if item.quality < 50:
                         item.quality = item.quality + 1
 
-    def normal_update_quality(self):
-        for item in self.items:
-            if item.name == "normal":
-                item.sell_in -= 1
-                if item.quality == 0:
-                    return
-                item.quality -= 1
-                if item.sell_in <= 0:
-                    item.quality -= 1
+    def normal_update_quality(self, item):
+        item.sell_in -= 1
+        if item.quality == 0:
+            return
+        item.quality -= 1
+        if item.sell_in <= 0:
+            item.quality -= 1
+
+    def brie_update_quality(self, item):
+        item.sell_in -= 1
+        if item.quality >= 50:
+            return
+        item.quality += 1
+        if item.sell_in <= 0:
+            item.quality += 1
+
+    def sulfuras_update_quality(self, item):
+        item.sell_in
+        item.quality
 
 
 class Item:
