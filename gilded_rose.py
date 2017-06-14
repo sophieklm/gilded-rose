@@ -36,12 +36,13 @@ class GildedRose(object):
     def normal_update_quality(self):
         for item in self.items:
             if item.name == "normal":
-                if item.quality != 0:
-                    if item.sell_in > 0:
-                        item.quality -= 1
-                    if item.sell_in <= 0:
-                        item.quality -= 2
-                    item.sell_in -= 1
+                item.sell_in -= 1
+                if item.quality == 0:
+                    return
+                item.quality -= 1
+                if item.sell_in <= 0:
+                    item.quality -= 1
+
 
 class Item:
     def __init__(self, name, sell_in, quality):

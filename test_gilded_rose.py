@@ -27,7 +27,7 @@ class GildedRoseTest(unittest.TestCase):
         items = [Item("normal", 0, 0)]
         gilded_rose = GildedRose(items)
         gilded_rose.normal_update_quality()
-        self.assertEquals(0, items[0].sell_in)
+        self.assertEquals(-1, items[0].sell_in)
         self.assertEquals(0, items[0].quality)
 
 if __name__ == '__main__':
