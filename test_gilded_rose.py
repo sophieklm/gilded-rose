@@ -54,5 +54,23 @@ class GildedRose_SulfurasTest(unittest.TestCase):
         self.assertEquals(5, self.items[0].sell_in)
         self.assertEquals(10, self.items[0].quality)
 
+class GildedRose_BackstagePassTest(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(self):
+        self.items = [
+            Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=15, quality=20),
+            Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=10, quality=49),
+            Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=49),
+            Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=0, quality=49)
+            ]
+        gilded_rose = GildedRose(self.items)
+        gilded_rose.update_quality()
+
+    def test_backstage_pass_before_sell_date(self):
+        self.assertEquals(14, self.items[0].sell_in)
+        self.assertEquals(21, self.items[0].quality)
+
+
 if __name__ == '__main__':
     unittest.main()

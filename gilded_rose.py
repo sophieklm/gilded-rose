@@ -9,11 +9,11 @@ class GildedRose(object):
                 self.brie_update_quality(item)
             elif item.name == "Sulfuras, Hand of Ragnaros":
                 self.sulfuras_update_quality(item)
+            elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+                self.backstage_pass_update_quality(item)
             else:
                 self.normal_update_quality(item)
 
-            # return self.items
-            # #
             # if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
             #     if item.quality > 0:
             #         if item.name != "Sulfuras, Hand of Ragnaros":
@@ -61,6 +61,15 @@ class GildedRose(object):
     def sulfuras_update_quality(self, item):
         item.sell_in
         item.quality
+
+    def backstage_pass_update_quality(self, item):
+        item.sell_in -= 1
+        if item.quality == 0:
+            return
+        item.quality += 1
+        if item.sell_in <= 10:
+            item.quality += 1
+
 
 
 class Item:
