@@ -71,6 +71,14 @@ class GildedRose_BackstagePassTest(unittest.TestCase):
         self.assertEquals(14, self.items[0].sell_in)
         self.assertEquals(21, self.items[0].quality)
 
+    def test_backstage_pass_10_days_to_sell_date(self):
+        self.assertEquals(9, self.items[1].sell_in)
+        self.assertEquals(51, self.items[1].quality)
+
+    def test_backstage_pass_5_days_to_sell_date(self):
+        self.assertEquals(4, self.items[2].sell_in)
+        self.assertEquals(52, self.items[2].quality)
+
 
 if __name__ == '__main__':
     unittest.main()

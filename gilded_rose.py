@@ -69,7 +69,8 @@ class GildedRose(object):
         item.quality += 1
         if item.sell_in <= 10:
             item.quality += 1
-
+        if item.sell_in <= 5:
+            item.quality += 1
 
 
 class Item:
