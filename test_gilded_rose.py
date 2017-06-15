@@ -46,13 +46,17 @@ class GildedRose_SulfurasTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        self.items = [Item("Sulfuras, Hand of Ragnaros", 5, 10)]
+        self.items = [Item("Sulfuras, Hand of Ragnaros", 5, 10), Item("Sulfuras, Hand of Ragnaros", 10, 15)]
         gilded_rose = GildedRose(self.items)
         gilded_rose.update_quality()
 
     def test_sulfuras_before_sell_date(self):
         self.assertEquals(5, self.items[0].sell_in)
         self.assertEquals(10, self.items[0].quality)
+
+    def test_sulfuras_before_sell_date(self):
+        self.assertEquals(10, self.items[1].sell_in)
+        self.assertEquals(15, self.items[1].quality)
 
 class GildedRose_BackstagePassTest(unittest.TestCase):
 

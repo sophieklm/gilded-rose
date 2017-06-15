@@ -8,7 +8,7 @@ class GildedRose(object):
             if "Aged Brie" in item.name:
                 self.brie_update_quality(item)
             elif "Sulfuras" in item.name:
-                self.sulfuras_update_quality(item)
+                return
             elif "Backstage passes" in item.name:
                 self.backstage_pass_update_quality(item)
             elif "Conjured" in item.name:
@@ -31,10 +31,6 @@ class GildedRose(object):
         item.quality += 1
         if item.sell_in <= 0:
             item.quality += 1
-
-    def sulfuras_update_quality(self, item):
-        item.sell_in
-        item.quality
 
     def backstage_pass_update_quality(self, item):
         item.sell_in -= 1
