@@ -73,15 +73,32 @@ class GildedRose_BackstagePassTest(unittest.TestCase):
 
     def test_backstage_pass_10_days_to_sell_date(self):
         self.assertEquals(9, self.items[1].sell_in)
-        self.assertEquals(51, self.items[1].quality)
+        self.assertEquals(50, self.items[1].quality)
 
     def test_backstage_pass_5_days_to_sell_date(self):
         self.assertEquals(4, self.items[2].sell_in)
-        self.assertEquals(52, self.items[2].quality)
-    
+        self.assertEquals(50, self.items[2].quality)
+
     def test_backstage_pass_after_sell_date(self):
         self.assertEquals(-1, self.items[3].sell_in)
         self.assertEquals(0, self.items[3].quality)
+
+
+class GildedRose_ConjuredTest(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(self):
+        self.items = [Item("Conjured Mana Cake", 3, 6), Item("Conjured Mana Cake", 0, 6)]
+        gilded_rose = GildedRose(self.items)
+        gilded_rose.update_quality()
+
+    def test_conjured_before_sell_date(self):
+        self.assertEquals(2, self.items[0].sell_in)
+        self.assertEquals(4, self.items[0].quality)
+
+    def test_conjured_after_sell_date(self):
+        self.assertEquals(-1, self.items[1].sell_in)
+        self.assertEquals(2, self.items[1].quality)
 
 if __name__ == '__main__':
     unittest.main()

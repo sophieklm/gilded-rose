@@ -11,36 +11,10 @@ class GildedRose(object):
                 self.sulfuras_update_quality(item)
             elif item.name == "Backstage passes to a TAFKAL80ETC concert":
                 self.backstage_pass_update_quality(item)
+            elif item.name == "Conjured Mana Cake":
+                self.conjured_update_quality(item)
             else:
                 self.normal_update_quality(item)
-
-            # if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-            #     if item.quality > 0:
-            #         if item.name != "Sulfuras, Hand of Ragnaros":
-            #             item.quality = item.quality - 1
-            # else:
-            #     if item.quality < 50:
-            #         item.quality = item.quality + 1
-            #         if item.name == "Backstage passes to a TAFKAL80ETC concert":
-            #             if item.sell_in < 11:
-            #                 if item.quality < 50:
-            #                     item.quality = item.quality + 1
-            #             if item.sell_in < 6:
-            #                 if item.quality < 50:
-            #                     item.quality = item.quality + 1
-            # if item.name != "Sulfuras, Hand of Ragnaros":
-            #     item.sell_in = item.sell_in - 1
-            # if item.sell_in < 0:
-            #     if item.name != "Aged Brie":
-            #         if item.name != "Backstage passes to a TAFKAL80ETC concert":
-            #             if item.quality > 0:
-            #                 if item.name != "Sulfuras, Hand of Ragnaros":
-            #                     item.quality = item.quality - 1
-            #         else:
-            #             item.quality = item.quality - item.quality
-            #     else:
-            #         if item.quality < 50:
-            #             item.quality = item.quality + 1
 
     def normal_update_quality(self, item):
         item.sell_in -= 1
@@ -64,15 +38,26 @@ class GildedRose(object):
 
     def backstage_pass_update_quality(self, item):
         item.sell_in -= 1
-        if item.quality == 0:
+        if item.quality == 0 or item.quality == 50:
             return
         item.quality += 1
-        if item.sell_in <= 10:
-            item.quality += 1
-        if item.sell_in <= 5:
-            item.quality += 1
         if item.sell_in <= 0:
             item.quality = 0
+        if item.quality < 50:
+            if item.sell_in <= 10:
+                item.quality += 1
+            if item.sell_in <= 5:
+                item.quality += 1
+            if item.sell_in <= 0:
+                item.quality = 0
+
+    def conjured_update_quality(self, item):
+        item.sell_in -= 1
+        if item.quality == 0:
+            return
+        item.quality -= 2
+        if item.sell_in <= 0:
+            item.quality -= 2
 
 class Item:
     def __init__(self, name, sell_in, quality):
