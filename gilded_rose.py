@@ -5,13 +5,13 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name == "Aged Brie":
+            if "Aged Brie" in item.name:
                 self.brie_update_quality(item)
-            elif item.name == "Sulfuras, Hand of Ragnaros":
+            elif "Sulfuras" in item.name:
                 self.sulfuras_update_quality(item)
-            elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+            elif "Backstage passes" in item.name:
                 self.backstage_pass_update_quality(item)
-            elif item.name == "Conjured Mana Cake":
+            elif "Conjured" in item.name:
                 self.conjured_update_quality(item)
             else:
                 self.normal_update_quality(item)
